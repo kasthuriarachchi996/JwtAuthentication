@@ -18,6 +18,7 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
+
     public AuthenticationResponse register(RegisterRequest request) {
 
         var user = User.builder()
@@ -31,6 +32,10 @@ public class AuthenticationService {
         var jwtToken =jwtService.generateToken(user);
 
         return AuthenticationResponse.builder()
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .email(user.getEmail())
+                .role(Role.USER.name())
                 .token(jwtToken)
                 .build();
     }
@@ -49,6 +54,10 @@ public class AuthenticationService {
         var jwtToken =jwtService.generateToken(user);
 
         return AuthenticationResponse.builder()
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .email(user.getEmail())
+                .role(Role.USER.name())
                 .token(jwtToken)
                 .build();
     }
